@@ -38,7 +38,7 @@ export default function App() {
   const { qtdTotal, totalFinanceiro, combos } = calcularTotal();
 
   const enviarPedido = () => {
-    let mensagem = `*PEDIDO AÇAÍ SPRINT* 🟣\n\n`;
+    let mensagem = `*PEDIDO AÇAÍ SPRINT*\n\n`;
 
     Object.keys(carrinho).forEach((idStr) => {
       const id = Number(idStr);
@@ -49,9 +49,9 @@ export default function App() {
       }
     });
 
-    mensagem += `\n📦 *Total de Itens:* ${qtdTotal}`;
+    mensagem += `\n *Total de Itens:* ${qtdTotal}`;
     if (combos > 0) mensagem += ` (Aplicado ${combos}x Promoção)`;
-    mensagem += `\n💰 *Valor Final:* R$ ${totalFinanceiro.toFixed(2)}`;
+    mensagem += `\n *Valor Final:* R$ ${totalFinanceiro.toFixed(2)}`;
     mensagem += `\n\n_Aguardo instruções de pagamento e entrega._`;
 
     const link = `https://wa.me/5511915114581?text=${encodeURIComponent(mensagem)}`;

@@ -1,4 +1,5 @@
 import { PRODUCTS } from "../data/products";
+import { Clock, Zap } from "lucide-react";
 
 interface MainContentProps {
   telaAtual: "menu" | "quem_somos";
@@ -19,20 +20,7 @@ export default function MainContent({
         <>
           <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-4 flex items-start gap-3 shadow-lg animate-fade-in">
             <div className="bg-amber-500/20 p-2 rounded-full text-amber-400">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-6 h-6"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
-                />{" "}
-              </svg>
+              <Zap/>
             </div>
 
             <div>
@@ -49,7 +37,7 @@ export default function MainContent({
           {/* Banner da Promoção */}
           <div className="bg-purple-600/20 border border-purple-500/50 p-4 rounded-2xl mb-6 text-center animate-pulse">
             <p className="text-purple-200 text-sm font-bold uppercase tracking-widest mb-1">
-              Promoção Relâmpago
+              Promoção
             </p>
             <h2 className="text-2xl font-bold text-white">
               Leve 3 por R$ 27,99
@@ -162,7 +150,10 @@ export default function MainContent({
               Horário de Atendimento
             </h3>
             <ul className="text-slate-400 space-y-2">
-              <li>🕒 Seg a Dom: 13h às 18h</li>
+              <li className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-purple-400"/>
+                <span>Seg a Dom: 13h às 18h</span>
+              </li>
             </ul>
           </div>
         </div>
