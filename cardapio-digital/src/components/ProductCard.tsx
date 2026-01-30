@@ -1,6 +1,7 @@
 import { PRODUCTS } from "../data/products";
-import { Clock, Zap } from "lucide-react";
-
+import { Clock, Zap, Camera, Code } from "lucide-react";
+import correndo from "../assets/correndo.jpeg";
+import anuncio from "../assets/anuncio.jpeg";
 interface MainContentProps {
   telaAtual: "menu" | "quem_somos";
   carrinho: { [key: number]: number };
@@ -20,7 +21,7 @@ export default function MainContent({
         <>
           <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-4 flex items-start gap-3 shadow-lg animate-fade-in">
             <div className="bg-amber-500/20 p-2 rounded-full text-amber-400">
-              <Zap/>
+              <Zap />
             </div>
 
             <div>
@@ -102,62 +103,97 @@ export default function MainContent({
           </div>
         </>
       ) : (
-        <div className="space-y-6 animate-fade-in">
-          <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-            <h2 className="text-2xl font-bold text-purple-400 mb-4">
-              Olá, eu sou Eliton Santos
-            </h2>
-            <p className="text-slate-300 leading-relaxed mb-4">
+        <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 space-y-6">
+          <h2 className="text-2xl font-bold text-purple-400">
+            Olá, eu sou Eliton Santos
+          </h2>
+
+          <div className="flex gap-4 items-start">
+            <img
+              src={correndo}
+              alt="Eliton correndo"
+              className="w-28 h-40 object-cover rounded-xl flex-shrink-0"
+            />
+
+            <p className="text-slate-300 leading-relaxed text-sm">
               Minha vida sempre foi definida pelo movimento, pela superação e
               pela fé. Como atleta paralímpico, aprendi que cada desafio é um
               convite para um novo arranque, e é com esse mesmo espírito de
-              resiliência que apresento a você o Açaí Sprint..
+              resiliência que apresento a você o Açaí Sprint.
             </p>
-            <p className="text-slate-300 leading-relaxed">
-              O Açaí Sprint nasceu da minha paixão pelo esporte e da necessidade
-              de oferecer uma energia prática e saudável para quem, assim como
-              eu, não para de lutar pelos seus sonhos. Mas este empreendimento
-              vai muito além de uma garrafa de 300ml de açaí premium.
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              Como cristão e atleta, acredito que nada acontece sem um propósito
-              maior. Hoje, o Açaí Sprint é o motor que me impulsiona em direção
-              a uma vitória fundamental fora das pistas: a realização da minha
-              cirurgia..
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              Parte de cada venda é destinada diretamente ao custeio desse
-              procedimento, permitindo que eu continue trilhando meu caminho no
-              esporte e na vida.
-            </p>
-            <p className="text-slate-300 leading-relaxed">
-              Seja no treino, no trabalho ou no lazer, o Açaí Sprint está com
-              você. E, juntos, estamos correndo por algo muito maior.
-            </p>
-            <div className="mt-8 p-4 bg-purple-900/30 border border-purple-500/30 rounded-xl text-center shadow-lg shadow-purple-900/20">
-              <p className="text-lg font-medium text-slate-200 italic">
-                "Você não compra o produto,
-                <br />
-                <span className="text-purple-400 font-bold not-italic text-xl">
-                  você impulsiona o propósito."
-                </span>
-              </p>
-            </div>
           </div>
 
-          <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Horário de Atendimento
-            </h3>
-            <ul className="text-slate-400 space-y-2">
-              <li className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-purple-400"/>
-                <span>Seg a Dom: 13h às 18h</span>
-              </li>
-            </ul>
+          <div className="flex gap-4 items-start flex-row-reverse">
+            <img
+              src={anuncio}
+              alt="Eliton com Açaí Sprint"
+              className="w-28 h-40 object-cover rounded-xl flex-shrink-0"
+            />
+
+            <p className="text-slate-300 leading-relaxed text-sm">
+              O Açaí Sprint nasceu da minha paixão pelo esporte e da necessidade
+              de oferecer uma energia prática e saudável para quem, assim como
+              eu, não para de lutar pelos seus sonhos.
+            </p>
+          </div>
+
+          <p className="text-slate-300 leading-relaxed text-sm">
+            Como cristão e atleta, acredito que nada acontece sem um propósito
+            maior. Hoje, o Açaí Sprint é o motor que me impulsiona em direção a
+            uma vitória fundamental fora das pistas: a realização da minha
+            cirurgia.
+          </p>
+
+          <p className="text-slate-300 leading-relaxed text-sm">
+            Parte de cada venda é destinada diretamente ao custeio desse
+            procedimento, permitindo que eu continue trilhando meu caminho no
+            esporte e na vida.
+          </p>
+
+          <div className="mt-6 p-4 bg-purple-900/30 border border-purple-500/30 rounded-xl text-center">
+            <p className="text-slate-200 italic">
+              "Você não compra o produto,
+              <br />
+              <span className="text-purple-400 font-bold not-italic text-lg">
+                você impulsiona o propósito."
+              </span>
+            </p>
           </div>
         </div>
       )}
+      <div className="mt-6 p-4 bg-slate-900/60 border border-slate-700 rounded-xl space-y-4">
+        <p className="text-slate-300 text-sm text-center">
+          Este projeto ganha vida através de mãos talentosas:
+        </p>
+
+        <div className="flex items-center justify-center gap-3 text-slate-400 text-sm">
+          <Camera className="w-4 h-4 text-purple-400" />
+          <span>
+            Olhar e fotografia por{" "}
+            <a
+              href="https://instagram.com/nathborgesfotografia"
+              target="_blank"
+              className="text-purple-400 hover:underline"
+            >
+              @nathborgesfotografia
+            </a>
+          </span>
+        </div>
+
+        <div className="flex items-center justify-center gap-3 text-slate-400 text-sm">
+          <Code className="w-4 h-4 text-purple-400" />
+          <span>
+            Desenvolvimento e tecnologia por{" "}
+            <a
+              href="https://instagram.com/dgbarroos"
+              target="_blank"
+              className="text-purple-400 hover:underline"
+            >
+              @dgbarroos
+            </a>
+          </span>
+        </div>
+      </div>
     </main>
   );
 }
