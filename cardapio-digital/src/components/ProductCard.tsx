@@ -159,41 +159,41 @@ export default function MainContent({
               </span>
             </p>
           </div>
+          <div className="mt-6 p-4 bg-slate-900/60 border border-slate-700 rounded-xl space-y-4">
+            <p className="text-slate-300 text-sm text-center">
+              Este projeto ganha vida através de mãos talentosas:
+            </p>
+
+            <div className="flex items-center justify-center gap-3 text-slate-400 text-sm">
+              <Camera className="w-4 h-4 text-purple-400" />
+              <span>
+                Olhar e fotografia por{" "}
+                <a
+                  href="https://instagram.com/nathborgesfotografia"
+                  target="_blank"
+                  className="text-purple-400 hover:underline"
+                >
+                  @nathborgesfotografia
+                </a>
+              </span>
+            </div>
+
+            <div className="flex items-center justify-center gap-3 text-slate-400 text-sm">
+              <Code className="w-4 h-4 text-purple-400" />
+              <span>
+                Desenvolvimento e tecnologia por{" "}
+                <a
+                  href="https://instagram.com/dgbarroos"
+                  target="_blank"
+                  className="text-purple-400 hover:underline"
+                >
+                  @dgbarroos
+                </a>
+              </span>
+            </div>
+          </div>
         </div>
       )}
-      <div className="mt-6 p-4 bg-slate-900/60 border border-slate-700 rounded-xl space-y-4">
-        <p className="text-slate-300 text-sm text-center">
-          Este projeto ganha vida através de mãos talentosas:
-        </p>
-
-        <div className="flex items-center justify-center gap-3 text-slate-400 text-sm">
-          <Camera className="w-4 h-4 text-purple-400" />
-          <span>
-            Olhar e fotografia por{" "}
-            <a
-              href="https://instagram.com/nathborgesfotografia"
-              target="_blank"
-              className="text-purple-400 hover:underline"
-            >
-              @nathborgesfotografia
-            </a>
-          </span>
-        </div>
-
-        <div className="flex items-center justify-center gap-3 text-slate-400 text-sm">
-          <Code className="w-4 h-4 text-purple-400" />
-          <span>
-            Desenvolvimento e tecnologia por{" "}
-            <a
-              href="https://instagram.com/dgbarroos"
-              target="_blank"
-              className="text-purple-400 hover:underline"
-            >
-              @dgbarroos
-            </a>
-          </span>
-        </div>
-      </div>
     </main>
   );
 }
