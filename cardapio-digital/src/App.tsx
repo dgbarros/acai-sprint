@@ -1,26 +1,41 @@
 import { useState } from "react";
-import { PRODUCTS } from "./data/products";
+import { ACAI_PRODUCTS } from "./data/products/acai";
+import { MOUSSE_PRODUCTS } from "./data/products/mousse";
 import Header from "./components/Header";
-import ProductCard from "./components/ProductCard";
+import MainContent from "./components/MainContent";
 import CheckoutBar from "./components/CheckoutBar";
+import type { Categoria } from "./types/product";
+import { avulso_produto, combo_produto } from "./data/products/precos";
+
+type CartKey = `${Categoria}:${number}`;
+type Tela = "produtos" | "acai" | "mousse" | "quem_somos";
 
 export default function App() {
-  const [carrinho, setCarrinho] = useState<{ [key: number]: number }>({});
-  const [telaAtual, setTelaAtual] = useState<"menu" | "quem_somos">("menu");
+  const [carrinho, setCarrinho] = useState<Record<CartKey, number>>({});
+  const [telaAtual, setTelaAtual] = useState<Tela>("produtos");
 
-  const adicionarItem = (id: number) => {
-    setCarrinho((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
+  const adicionarItem = (categoria: Categoria, id: number) => {
+    const key = `${categoria}:${id}` as CartKey;
+
+    setCarrinho((prev) => ({
+      ...prev,
+      [key]: (prev[key] || 0) + 1,
+    }));
   };
 
-  const removerItem = (id: number) => {
+  const removerItem = (categoria: Categoria, id: number) => {
+    const key = `${categoria}:${id}` as CartKey;
+
     setCarrinho((prev) => {
-      const novaQtd = (prev[id] || 0) - 1;
+      const novaQtd = (prev[key] || 0) - 1;
+
       if (novaQtd <= 0) {
-        const novoCarrinho = { ...prev };
-        delete novoCarrinho[id];
-        return novoCarrinho;
+        const novo = { ...prev };
+        delete novo[key];
+        return novo;
       }
-      return { ...prev, [id]: novaQtd };
+
+      return { ...prev, [key]: novaQtd };
     });
   };
 
@@ -29,29 +44,40 @@ export default function App() {
 
     const combos = Math.floor(qtdTotal / 3);
     const avulsos = qtdTotal % 3;
-
-    const totalFinanceiro = combos * 27.99 + avulsos * 9.99;
+    const totalFinanceiro = combos * combo_produto + avulsos * avulso_produto;
 
     return { qtdTotal, totalFinanceiro, combos };
   };
 
   const { qtdTotal, totalFinanceiro, combos } = calcularTotal();
 
+  const buscarProduto = (categoria: Categoria, id: number) => {
+    if (categoria === "acai") {
+      return ACAI_PRODUCTS.find((p) => p.id === id);
+    }
+    if (categoria === "mousse") {
+      return MOUSSE_PRODUCTS.find((p) => p.id === id);
+    }
+    return null;
+  };
+
   const enviarPedido = () => {
     let mensagem = `*PEDIDO AÇAÍ SPRINT*\n\n`;
 
-    Object.keys(carrinho).forEach((idStr) => {
+    Object.entries(carrinho).forEach(([key, qtd]) => {
+      const [categoria, idStr] = key.split(":") as [Categoria, string];
       const id = Number(idStr);
-      const qtd = carrinho[id];
-      const produto = PRODUCTS.find((p) => p.id === id);
+
+      const produto = buscarProduto(categoria, id);
+
       if (produto) {
         mensagem += `• ${qtd}x ${produto.nome}\n`;
       }
     });
 
-    mensagem += `\n *Total de Itens:* ${qtdTotal}`;
+    mensagem += `\n*Total de Itens:* ${qtdTotal}`;
     if (combos > 0) mensagem += ` (Aplicado ${combos}x Promoção)`;
-    mensagem += `\n *Valor Final:* R$ ${totalFinanceiro.toFixed(2)}`;
+    mensagem += `\n*Valor Final:* R$ ${totalFinanceiro.toFixed(2)}`;
     mensagem += `\n\n_Aguardo instruções de pagamento e entrega._`;
 
     const link = `https://wa.me/5511915114581?text=${encodeURIComponent(mensagem)}`;
@@ -59,22 +85,23 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 pb-24">
+    <div className="min-h-dvh bg-slate-900 text-slate-100 pb-24">
       <Header
         qtdTotal={qtdTotal}
         telaAtual={telaAtual}
         setTelaAtual={setTelaAtual}
       />
 
-      <ProductCard
+      <MainContent
         telaAtual={telaAtual}
+        mudarTela={setTelaAtual}
         carrinho={carrinho}
         adicionarItem={adicionarItem}
         removerItem={removerItem}
       />
 
-      {qtdTotal > 0 && telaAtual === 'menu' && (
-        <CheckoutBar 
+      {qtdTotal > 0 && (telaAtual === "acai" || telaAtual === "mousse") && (
+        <CheckoutBar
           total={totalFinanceiro}
           combos={combos}
           onCheckout={enviarPedido}
