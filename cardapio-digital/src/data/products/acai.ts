@@ -4,6 +4,8 @@ import imgPacoca from "../../assets/acai-pacoca.jpeg";
 import imgPuro from "../../assets/acai-puro.jpeg";
 import imgCupuacu from "../../assets/acai-cupuacu.jpeg";
 import imgMorango from "../../assets/acai-morango.jpeg";
+import { avulso_produto } from "./precos";
+
 
 export const ACAI_PRODUCTS: Product[] = [
   {
@@ -11,7 +13,7 @@ export const ACAI_PRODUCTS: Product[] = [
     categoria: "acai",
     nome: "Açaí com Ninho",
     descricao: "Cremosidade pura. Açaí batido com leite Ninho.",
-    preco: 9.99,
+    preco: avulso_produto,
     imagem: imgNinho,
   },
   {
@@ -19,7 +21,7 @@ export const ACAI_PRODUCTS: Product[] = [
     categoria: "acai",
     nome: "Açaí com Paçoca",
     descricao: "O queridinho! Açaí com farofa de paçoca crocante.",
-    preco: 9.99,
+    preco: avulso_produto,
     imagem: imgPacoca,
   },
   {
@@ -27,7 +29,7 @@ export const ACAI_PRODUCTS: Product[] = [
     categoria: "acai",
     nome: "Açaí Puro",
     descricao: "Para os raiz. Açaí puro, zero xarope, sabor intenso.",
-    preco: 9.99,
+    preco: avulso_produto,
     imagem: imgPuro,
   },
   {
@@ -35,7 +37,7 @@ export const ACAI_PRODUCTS: Product[] = [
     categoria: "acai",
     nome: "Açaí com Cupuaçu",
     descricao: "Combinação amazônica clássica e refrescante.",
-    preco: 9.99,
+    preco: avulso_produto,
     imagem: imgCupuacu,
   },
   {
@@ -43,7 +45,7 @@ export const ACAI_PRODUCTS: Product[] = [
     categoria: "acai",
     nome: "Açaí com Morango",
     descricao: "Equilíbrio perfeito entre doce e ácido.",
-    preco: 9.99,
+    preco: avulso_produto,
     imagem: imgMorango,
   },
 ];

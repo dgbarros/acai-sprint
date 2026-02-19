@@ -1,13 +1,15 @@
 import { ACAI_PRODUCTS } from "../data/products/acai";
 import { MOUSSE_PRODUCTS } from "../data/products/mousse";
 import ProductList from "./menu/ProductList";
-import instagramIcon from "../assets/instagram.svg"
+import instagramIcon from "../assets/instagram.svg";
+import acaiGarrafa from "../assets/acai-garrafa.png";
+import mousseGarrafa from "../assets/mousse-garrafa.png"
 
-
-import { Zap, Camera, Code } from "lucide-react";
+import { Camera, Code } from "lucide-react";
 import correndo from "../assets/correndo.jpeg";
 import anuncio from "../assets/anuncio.jpeg";
 import type { Categoria } from "../types/product";
+import Information from "./Information";
 
 type Tela = "produtos" | "acai" | "mousse" | "quem_somos";
 
@@ -52,10 +54,7 @@ export default function MainContent({
             className="w-full bg-gradient-to-r from-purple-700 to-indigo-700 rounded-2xl p-4 flex items-center gap-4 shadow-xl hover:scale-[1.03] active:scale-95 transition"
           >
             <div className="w-20 h-20 rounded-xl overflow-hidden">
-              <img
-                src="/imagem-acai.jpg"
-                className="w-full h-full object-cover"
-              />
+              <img src={acaiGarrafa} className="w-full h-full object-cover" />
             </div>
             <div className="text-left">
               <h3 className="text-white font-bold text-lg">Açaí na Garrafa</h3>
@@ -68,10 +67,7 @@ export default function MainContent({
             className="w-full bg-gradient-to-r from-pink-700 to-rose-700 rounded-2xl p-4 flex items-center gap-4 shadow-xl hover:scale-[1.03] active:scale-95 transition"
           >
             <div className="w-20 h-20 rounded-xl overflow-hidden">
-              <img
-                src="/imagem-mousse.jpg"
-                className="w-full h-full object-cover"
-              />
+              <img src={mousseGarrafa} className="w-full h-full object-cover" />
             </div>
             <div className="text-left">
               <h3 className="text-white font-bold text-lg">
@@ -85,33 +81,7 @@ export default function MainContent({
 
       {telaAtual === "acai" && (
         <>
-          <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 mb-4 flex items-start gap-3 shadow-lg animate-fade-in">
-            <div className="bg-amber-500/20 p-2 rounded-full text-amber-400">
-              <Zap />
-            </div>
-
-            <div>
-              <h3 className="font-bold text-amber-100 text-sm">
-                Entrega via App
-              </h3>
-              <p className="text-amber-200/80 text-xs mt-1 leading-relaxed">
-                Ainda não possuímos motoboy fixo. A taxa de entrega será
-                calculada no momento do envio com base nos aplicativos (Uber/99
-                Moto).
-              </p>
-            </div>
-          </div>
-          <div className="bg-purple-600/20 border border-purple-500/50 p-4 rounded-2xl mb-6 text-center animate-pulse">
-            <p className="text-purple-200 text-sm font-bold uppercase tracking-widest mb-1">
-              Promoção
-            </p>
-            <h2 className="text-2xl font-bold text-white">
-              Leve 3 por R$ 27,99
-            </h2>
-            <p className="text-xs text-purple-300">
-              Misture os sabores como quiser!
-            </p>
-          </div>
+          <Information />
 
           <ProductList
             categoria="acai"
@@ -124,13 +94,17 @@ export default function MainContent({
       )}
 
       {telaAtual === "mousse" && (
-        <ProductList
-          categoria="mousse"
-          produtos={MOUSSE_PRODUCTS}
-          carrinho={carrinho}
-          adicionarItem={adicionarItem}
-          removerItem={removerItem}
-        />
+        <>
+          <Information />
+
+          <ProductList
+            categoria="mousse"
+            produtos={MOUSSE_PRODUCTS}
+            carrinho={carrinho}
+            adicionarItem={adicionarItem}
+            removerItem={removerItem}
+          />
+        </>
       )}
 
       {telaAtual === "quem_somos" && (
