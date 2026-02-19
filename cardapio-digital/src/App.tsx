@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import MainContent from "./components/MainContent";
 import CheckoutBar from "./components/CheckoutBar";
 import type { Categoria } from "./types/product";
+import { avulso_produto, combo_produto } from "./data/products/precos";
 
 type CartKey = `${Categoria}:${number}`;
 type Tela = "produtos" | "acai" | "mousse" | "quem_somos";
@@ -43,7 +44,7 @@ export default function App() {
 
     const combos = Math.floor(qtdTotal / 3);
     const avulsos = qtdTotal % 3;
-    const totalFinanceiro = combos * 27.99 + avulsos * 9.99;
+    const totalFinanceiro = combos * combo_produto + avulsos * avulso_produto;
 
     return { qtdTotal, totalFinanceiro, combos };
   };
@@ -84,7 +85,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-100 pb-24">
+    <div className="min-h-dvh bg-slate-900 text-slate-100 pb-24">
       <Header
         qtdTotal={qtdTotal}
         telaAtual={telaAtual}
