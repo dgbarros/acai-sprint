@@ -1,6 +1,6 @@
 import { ShoppingCart, Zap, ArrowLeft } from "lucide-react";
 
-type Tela = "produtos" | "acai" | "mousse" | "quem_somos";
+type Tela = "produtos" | "acai" | "mousse" | "acai_mousse" | "quem_somos";
 
 interface HeaderProps {
   qtdTotal: number;
@@ -14,7 +14,7 @@ export default function Header({
   setTelaAtual,
 }: HeaderProps) {
   const estaDentroDeCategoria =
-    telaAtual === "acai" || telaAtual === "mousse";
+    telaAtual === "acai" || telaAtual === "mousse" || telaAtual === "acai_mousse";
 
   return (
     <header className="bg-gradient-to-r from-purple-900 to-indigo-900 p-6 shadow-lg rounded-b-3xl">
