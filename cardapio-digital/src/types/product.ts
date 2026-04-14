@@ -1,4 +1,4 @@
-export type Categoria = "acai" | "mousse" | "vitamina";
+export type Categoria = "acai" | "mousse" | "acai_mousse";
 
 export interface Product {
   id: number;

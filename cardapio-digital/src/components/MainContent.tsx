@@ -3,15 +3,17 @@ import { MOUSSE_PRODUCTS } from "../data/products/mousse";
 import ProductList from "./menu/ProductList";
 import instagramIcon from "../assets/instagram.svg";
 import acaiGarrafa from "../assets/acai-garrafa.png";
-import mousseGarrafa from "../assets/mousse-garrafa.png"
+import mousseGarrafa from "../assets/mousse-garrafa.png";
+import acaiMousse from "../assets/acai-mousse.png";
 
 import { Camera, Code } from "lucide-react";
 import correndo from "../assets/correndo.jpeg";
 import anuncio from "../assets/anuncio.jpeg";
 import type { Categoria } from "../types/product";
 import Information from "./Information";
+import { ACAI_COM_MOUSSE_PRODUCTS } from "../data/products/acai-mousse";
 
-type Tela = "produtos" | "acai" | "mousse" | "quem_somos";
+type Tela = "produtos" | "acai" | "mousse" | "acai_mousse" | "quem_somos";
 
 type CartKey = `${Categoria}:${number}`;
 
@@ -76,6 +78,18 @@ export default function MainContent({
               <p className="text-pink-200 text-sm">Ver opções disponíveis</p>
             </div>
           </button>
+          <button
+            onClick={() => mudarTela("acai_mousse")}
+            className="w-full bg-gradient-to-r from-purple-700 via-pink-600 to-rose-600 rounded-2xl p-4 flex items-center gap-4 shadow-xl hover:scale-[1.03] active:scale-95 transition"
+          >
+            <div className="w-20 h-20 rounded-xl overflow-hidden">
+              <img src={acaiMousse} className="w-full h-full object-cover" />
+            </div>
+            <div className="text-left">
+              <h3 className="text-white font-bold text-lg">Açai com Mousse</h3>
+              <p className="text-pink-200 text-sm">Ver opções disponíveis</p>
+            </div>
+          </button>
         </div>
       )}
 
@@ -100,6 +114,20 @@ export default function MainContent({
           <ProductList
             categoria="mousse"
             produtos={MOUSSE_PRODUCTS}
+            carrinho={carrinho}
+            adicionarItem={adicionarItem}
+            removerItem={removerItem}
+          />
+        </>
+      )}
+
+      {telaAtual === "acai_mousse" && (
+        <>
+          <Information />
+
+          <ProductList
+            categoria="acai_mousse"
+            produtos={ACAI_COM_MOUSSE_PRODUCTS}
             carrinho={carrinho}
             adicionarItem={adicionarItem}
             removerItem={removerItem}

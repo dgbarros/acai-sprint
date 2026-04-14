@@ -6,9 +6,10 @@ import MainContent from "./components/MainContent";
 import CheckoutBar from "./components/CheckoutBar";
 import type { Categoria } from "./types/product";
 import { avulso_produto, combo_produto } from "./data/products/precos";
+import { ACAI_COM_MOUSSE_PRODUCTS } from "./data/products/acai-mousse";
 
 type CartKey = `${Categoria}:${number}`;
-type Tela = "produtos" | "acai" | "mousse" | "quem_somos";
+type Tela = "produtos" | "acai" | "mousse" | "acai_mousse" | "quem_somos";
 
 export default function App() {
   const [carrinho, setCarrinho] = useState<Record<CartKey, number>>({});
@@ -58,6 +59,9 @@ export default function App() {
     if (categoria === "mousse") {
       return MOUSSE_PRODUCTS.find((p) => p.id === id);
     }
+    if (categoria === "acai_mousse") {
+      return ACAI_COM_MOUSSE_PRODUCTS.find((p) => p.id === id);
+    }
     return null;
   };
 
@@ -100,7 +104,7 @@ export default function App() {
         removerItem={removerItem}
       />
 
-      {qtdTotal > 0 && (telaAtual === "acai" || telaAtual === "mousse") && (
+      {qtdTotal > 0 && (telaAtual === "acai" || telaAtual === "mousse" || telaAtual === "acai_mousse") && (
         <CheckoutBar
           total={totalFinanceiro}
           combos={combos}
